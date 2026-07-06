@@ -64,15 +64,21 @@ body,
 
     max-width:1500px;
 
-    padding-top:0rem;
+    padding-top:0 !important;
 
-    padding-left:5rem;
+    padding-bottom:0 !important;
 
-    padding-right:5rem;
+    padding-left:5rem !important;
 
-    padding-bottom:0rem;
+    padding-right:5rem !important;
 
 }
+
+section.main > div{
+    padding-top:0 !important;
+}
+
+
 
 
 section.main{
@@ -150,25 +156,6 @@ hr{
 /* ==========================
    NAVBAR
 ========================== */
-
-.navbar{
-
-    height:82px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    border-bottom:1px solid var(--border);
-
-    background:white;
-
-    margin-bottom:30px;
-
-}
-
 
 .logo{
 
@@ -535,97 +522,70 @@ margin-bottom:80px;
 /* ==========================================
    FIXED NAVBAR
 ========================================== */
+/* ==========================================
+   NAVBAR
+========================================== */
 
-.navbar{
-
-    position:fixed;
-
+.navbar-container{
+    position:sticky;
     top:0;
+    z-index:999;
+    background:white;
+    border-bottom:1px solid #E5E7EB;
+}
 
-    left:0;
+.logo{
+    font-size:34px;
+    font-weight:700;
+    color:#111827;
+}
+
+/* Buttons */
+
+.stButton > button{
 
     width:100%;
 
-    height:78px;
+    background:transparent;
 
-    background:white;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:0 90px;
-
-    border-bottom:1px solid #ECECEC;
-
-    z-index:9999;
-
-    box-sizing:border-box;
-
-}
-
-
-/* ==========================================
-   LOGO
-========================================== */
-
-.logo a{
-
-    text-decoration:none;
-
-    color:#111827;
-
-    font-size:34px;
-
-    font-weight:700;
-
-}
-
-
-/* ==========================================
-   LINKS
-========================================== */
-
-.nav-links{
-
-    display:flex;
-
-    gap:45px;
-
-}
-
-
-.nav-links a{
-
-    text-decoration:none;
+    border:none;
 
     color:#6B7280;
 
-    font-size:18px;
+    font-size:17px;
 
     font-weight:500;
 
-    transition:.25s;
+    border-radius:0;
+
+    padding:12px 0;
+
+    transition:.2s;
 
 }
 
-
-.nav-links a:hover{
+.stButton > button:hover{
 
     color:#111827;
 
+    background:transparent;
+
+    border-bottom:2px solid #111827;
+
 }
 
+.stButton > button:focus{
 
+    color:#111827;
+
+    background:transparent;
+
+    box-shadow:none;
+
+    border-bottom:2px solid #111827;
+
+}
 /* ==========================================
    PAGE SPACING
 ========================================== */
-
-.main .block-container{
-
-    padding-top:110px;
-
-}
 

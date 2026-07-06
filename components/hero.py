@@ -43,7 +43,8 @@ solutions through product thinking, experimentation, and user research.
         with b1:
             st.link_button(
                 "View Case Studies",
-                "#case-studies",
+                "https://noirakhan.github.io/portfolio/",
+                
                 use_container_width=True,
             )
 
@@ -61,6 +62,7 @@ solutions through product thinking, experimentation, and user research.
                         file_name="Noira_Khan_Resume.pdf",
                         mime="application/pdf",
                         use_container_width=True,
+                        key="hero_resume"
                     )
 
     # ==========================================
@@ -76,7 +78,7 @@ solutions through product thinking, experimentation, and user research.
 
         st.markdown(
             """
-### Engineer Business Systems Analysis | AI Product Management 
+### Engineer Business Systems Analyst | AI Product Management 
 """
         )
 

@@ -63,4 +63,25 @@ class Layout:
             """,
             unsafe_allow_html=True,
         )
+
+        st.markdown(
+"""
+<style>
+
+header{
+visibility:hidden;
+}
+
+footer{
+visibility:hidden;
+}
+
+#MainMenu{
+visibility:hidden;
+}
+
+</style>
+""",
+unsafe_allow_html=True
+)
         

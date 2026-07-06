@@ -3,7 +3,6 @@ import streamlit as st
 
 
 def about():
-
     st.divider()
 
     st.markdown(
@@ -24,42 +23,38 @@ def about():
     # ===================================================
 
     with left:
-
         st.image(
             "assets/images/formalpic.png",
             use_container_width=True,
         )
 
-        st.write("")
-
         st.subheader("Current")
 
-        st.markdown("**-Unisys India Private Limited, New Delhi**")
-
-        st.write("-Engineer Business Systems Analyst,")
-        st.write("2024 Jan - Present")
-        st.write("")
+        st.markdown(
+            """
+- **Unisys India Private Limited, New Delhi**
+- Engineer Business Systems Analyst
+- January 2024 – Present
+"""
+        )
 
         st.subheader("Previously")
 
-        st.write("-Mathematics Graduate,2017, University of Delhi,86%")
-        st.write("-Microsoft Certified: Product Mananagement,2026")
-        st.write("-IIBA Certified: Business Analysis,2022")
-
-        st.write("-Data Analytics & Visualization Certified,2023,TechTaleo")
-
-        st.write("-AI & Machine Learning Projects, Hands on experience with RAG,LLM,Python,SQL,PowerBI")
-
-        
+        st.markdown(
+            """
+- Mathematics Graduate, University of Delhi (2017) — **86%**
+- Microsoft AI Product Management Professional Certificate (2026)
+- IIBA Business Analysis Certification (2022)
+- Data Analytics & Visualization Certification (2023) — TechTaleo
+- Built AI & Machine Learning projects using **RAG, LLMs, Python, SQL, and Power BI**
+"""
+        )
 
     # ===================================================
     # RIGHT SIDE
     # ===================================================
 
     with right:
-
-        
-
         st.write(
             """
 I'm currently working as an **Engineer Business Systems Analyst**
@@ -67,7 +62,7 @@ at **Unisys**, where I collaborate with business stakeholders,
 optimize enterprise processes, and deliver technology solutions.
 I have hands-on experience with B2B products in the Fintech domain.
 Working in enterprise technology sparked my interest in
-**Artificial Intelligence**, **Machine Learning**, synchronizing new techlogies with current business.
+**Artificial Intelligence**, **Machine Learning**, synchronizing new technologies with current business.
 
 I'm building AI-powered products that combine engineering,
 customer understanding, and product strategy.
@@ -116,28 +111,18 @@ to build products that create meaningful impact.
             )
 
         with c3:
-
             resume_path = Path("assets/resume/resume_noira_khan.pdf")
-        
 
             if resume_path.exists():
-
                 with open(resume_path, "rb") as pdf:
-
                     st.download_button(
-                        label="Resume",
+                        label="Download Resume",
                         data=pdf,
                         file_name="resume_noira_khan.pdf",
                         mime="application/pdf",
                         use_container_width=True,
+                        key="about_resume"
                     )
-
-        with c4:
-            st.link_button(
-                "Naukri",
-                "https://www.naukri.com/mnjuser/profile",
-                use_container_width=True,
-            )
 
     st.write("")
     st.write("")
