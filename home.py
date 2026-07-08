@@ -1,16 +1,9 @@
-# ==========================================================
-# home.py
-# AI Product Manager Portfolio
-# ==========================================================
-
-from turtle import st
-
 from components.layout import Layout
 from components.navbar import navbar
 from components.hero import hero
 from components.about import about
 from components.contact_section import contact_section
-import streamlit as st
+
 # ----------------------------------------------------------
 # PAGE SETUP
 # ----------------------------------------------------------
@@ -18,7 +11,7 @@ import streamlit as st
 Layout.setup()
 
 # ----------------------------------------------------------
-# PAGE COMPONENTS
+# PAGE CONTENT
 # ----------------------------------------------------------
 
 navbar()
@@ -27,8 +20,6 @@ hero()
 
 about()
 
+
+
 contact_section()
-
-
-
-
