@@ -36,11 +36,11 @@ def navbar():
 
     # Empty space where the logo used to be
     with c1:
-        st.markdown("", unsafe_allow_html=True)
+        st.markdown("Noira Khan", unsafe_allow_html=True)
 
     with c2:
         if st.button("About", key="nav_about", use_container_width=True):
-            st.switch_page("pages/About.py")
+            st.switch_page("pages/about.py")
 
     with c3:
         if st.button("Case Studies", key="nav_case", use_container_width=True):
