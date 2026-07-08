@@ -3,6 +3,9 @@ import streamlit as st
 from components.navbar import navbar
 from components.project_card import project_card
 
+# --------------------------------------------------
+# Page Config
+# --------------------------------------------------
 
 st.set_page_config(
     page_title="Products Built",
@@ -10,69 +13,79 @@ st.set_page_config(
     layout="wide",
 )
 
-# -------------------------
+# --------------------------------------------------
+# Hide Streamlit Sidebar
+# --------------------------------------------------
+
+st.markdown("""
+<style>
+
+/* Hide sidebar */
+[data-testid="stSidebar"]{
+    display:none;
+}
+
+/* Hide sidebar expand button */
+[data-testid="collapsedControl"]{
+    display:none;
+}
+
+/* Reduce top padding */
+.block-container{
+    padding-top:2rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# --------------------------------------------------
 # Navbar
-# -------------------------
+# --------------------------------------------------
+
 navbar()
 
-# -------------------------
+# --------------------------------------------------
 # Header
-# -------------------------
+# --------------------------------------------------
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <h1 style='text-align:center;'>
-        Products Built
-    </h1>
-    """,
-    unsafe_allow_html=True,
-)
+st.title("Products Built")
 
 st.markdown(
-    """
-    <p style='text-align:center;
-              color:gray;
-              font-size:18px;
-              margin-bottom:40px;'>
-    AI Products built from concept to deployment.
-    </p>
-    """,
-    unsafe_allow_html=True,
+"""
+Explore a collection of AI products that I designed and developed, combining
+Artificial Intelligence, Machine Learning and Product Thinking to solve
+real-world business problems.
+"""
 )
 
-# -------------------------
-# Product Cards
-# -------------------------
+st.markdown("---")
 
-col1, col2 = st.columns(2, gap="large")
+# ==================================================
+# PROJECT 1
+# ==================================================
 
-with col1:
-
-    project_card(
-        title="Multimodal Retail Assistant",
-        subtitle="""
-AI-powered product discovery using
-Vision, Retrieval-Augmented Generation (RAG),
-and Large Language Models.
+project_card(
+    title="🛍️ Multimodal Retail Assistant",
+    subtitle="""
+AI-powered fashion discovery platform using Computer Vision,
+Retrieval-Augmented Generation (RAG) and Large Language Models.
 """,
-        image_path="assets/rag_cover.png",
-        page_path="products/retail_assistant/overview_retail.py",
-        button_key="retail",
-    )
+    image_path="products/retail_assistant/rag_cover.jpg",
+    page_path="pages/overview_retail.py",
+    button_key="retail",
+)
 
+# ==================================================
+# PROJECT 2
+# ==================================================
 
-with col2:
-
-    project_card(
-        title="Finance Shield AI",
-        subtitle="""
-Credit Card Fraud Detection
-using Machine Learning,
-FastAPI and Streamlit.
+project_card(
+    title="Finance Shield AI",
+    subtitle="""
+AI-powered credit card fraud detection system using
+Machine Learning, FastAPI and Streamlit.
 """,
-        image_path="assets/fraud_cover.png",
-        page_path="products/fraud_detection/overview_fraud.py",
-        button_key="fraud",
-    )
+    image_path="products/fraud_detection/fraud_cover.jpeg",
+    page_path="pages/overview_fraud.py",
+    button_key="fraud",
+)

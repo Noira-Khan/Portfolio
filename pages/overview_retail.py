@@ -20,7 +20,7 @@ st.markdown("""
 ### AI-powered Fashion Discovery using Computer Vision, RAG & Large Language Models
 """)
 
-st.image("products/retail_assistantrag_cover.jpg", use_container_width=True)
+st.image("products/retail_assistant/rag_cover.jpg", use_container_width=True)
 
 st.divider()
 
