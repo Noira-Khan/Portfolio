@@ -1,80 +1,78 @@
 import streamlit as st
-from components.section_title import section_title
+
+from components.navbar import navbar
 from components.project_card import project_card
 
 
-def products_built():
+st.set_page_config(
+    page_title="Products Built",
+    page_icon="🚀",
+    layout="wide",
+)
 
-    st.write("")
-    st.divider()
+# -------------------------
+# Navbar
+# -------------------------
+navbar()
 
-    section_title(
-        "PRODUCTS BUILT",
-        "AI-powered applications combining engineering, machine learning, and product thinking."
-    )
+# -------------------------
+# Header
+# -------------------------
 
-    st.write("")
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <h1 style='text-align:center;'>
+        Products Built
+    </h1>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <p style='text-align:center;
+              color:gray;
+              font-size:18px;
+              margin-bottom:40px;'>
+    AI Products built from concept to deployment.
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
+
+# -------------------------
+# Product Cards
+# -------------------------
+
+col1, col2 = st.columns(2, gap="large")
+
+with col1:
 
     project_card(
         title="Multimodal Retail Assistant",
-        subtitle="AI-powered shopping assistant using Multimodal Search, Retrieval-Augmented Generation (RAG), and Large Language Models.",
-        tags=[
-            "RAG",
-            "LLM",
-            "Computer Vision",
-            "Streamlit",
-            "Python"
-        ],
-        image="assets/images/retail.png",
-        github="#",
-        demo="#",
-        page="projects/retail_assistant/overview_retail.py"
-    )
-    project_card(
-        title="AI Fraud Detection",
-        subtitle="Machine Learning pipeline for detecting fraudulent financial transactions with explainable predictions.",
-        tags=[
-            "Machine Learning",
-            "FastAPI",
-            "Python",
-            "Scikit-Learn"
-        ],
-        image="assets/images/fraud.png",
-        github="#",
-        demo="#",
-        page="projects/fraud_detection/overview_fraud.py"
-    )
-    project_card(
-        title="AI Interview Coach",
-        subtitle="LLM-powered interview preparation assistant with personalized feedback and question generation.",
-        tags=[
-            "LLM",
-            "Prompt Engineering",
-            "FastAPI",
-            "Python"
-        ],
-        image="assets/images/interview.png",
-        github="#",
-        demo="#",
-        page="projects/interview_coach/overview_interview.py"
-    )
-    project_card(
-        title="AI Customer Support Agent",
-        subtitle="Conversational AI assistant capable of answering customer queries using Retrieval-Augmented Generation.",
-        tags=[
-            "RAG",
-            "LLM",
-            "FastAPI",
-            "Streamlit"
-        ],
-        image="assets/images/support.png",
-        github="#",
-        demo="#",
-        page="projects/support_agent/overview_support.py"
-    )
-    st.write("")
-    st.info(
-        "More AI products are currently under development as I continue exploring Product Management, Generative AI, and Intelligent Systems."
+        subtitle="""
+AI-powered product discovery using
+Vision, Retrieval-Augmented Generation (RAG),
+and Large Language Models.
+""",
+        image_path="assets/rag_cover.png",
+        page_path="products/retail_assistant/overview_retail.py",
+        button_key="retail",
     )
 
-    st.write("")
+
+with col2:
+
+    project_card(
+        title="Finance Shield AI",
+        subtitle="""
+Credit Card Fraud Detection
+using Machine Learning,
+FastAPI and Streamlit.
+""",
+        image_path="assets/fraud_cover.png",
+        page_path="products/fraud_detection/overview_fraud.py",
+        button_key="fraud",
+    )
