@@ -64,28 +64,36 @@ st.markdown("---")
 # PROJECT 1
 # ==================================================
 
-project_card(
-    title="🛍️ Multimodal Retail Assistant",
-    subtitle="""
+left, center, right = st.columns([1, 3, 1])
+
+with center:
+    project_card(
+        title="🛍️ Multimodal Retail Assistant",
+        subtitle="""
 AI-powered fashion discovery platform using Computer Vision,
 Retrieval-Augmented Generation (RAG) and Large Language Models.
 """,
-    image_path="products/retail_assistant/rag_cover.jpg",
-    page_path="pages/overview_retail.py",
-    button_key="retail",
-)
+        image_path="products/retail_assistant/rag_cover.jpg",
+        page_path="pages/overview_retail.py",
+        button_key="retail",
+    )
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================================================
 # PROJECT 2
 # ==================================================
 
-project_card(
-    title="Finance Shield AI",
-    subtitle="""
+left, center, right = st.columns([1, 3, 1])
+
+with center:
+    project_card(
+        title="Finance Shield AI",
+        subtitle="""
 AI-powered credit card fraud detection system using
 Machine Learning, FastAPI and Streamlit.
 """,
-    image_path="products/fraud_detection/fraud_cover.jpeg",
-    page_path="pages/overview_fraud.py",
-    button_key="fraud",
-)
+        image_path="products/fraud_detection/fraud_cover.jpeg",
+        page_path="pages/overview_fraud.py",
+        button_key="fraud",
+    )
