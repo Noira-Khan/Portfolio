@@ -91,6 +91,23 @@ noirak4@gmail.com
         st.write("")
         st.write("")
 
+        c1, c2 = st.columns([1, 8])
+
+        with c1:
+            st.image("assets/icons/GitHub.png", width=38)
+
+        with c2:
+            st.markdown("### GitHub")
+
+        st.link_button(
+            "Open GitHub",
+            "https://github.com/Noira-Khan",
+            use_container_width=True,
+        )
+
+        st.write("")
+        st.write("")
+
         # ---------------- Resume ---------------- #
 
         c1, c2 = st.columns([1, 8])

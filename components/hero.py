@@ -27,12 +27,10 @@ def hero():
 
         st.write(
             """
-Building intelligent AI products using **Machine Learning,
-Retrieval-Augmented Generation (RAG), Large Language Models,
-and Product Strategy**.
-
-I enjoy transforming customer problems into scalable AI-powered
-solutions through product thinking, experimentation, and user research.
+I work on enterprise lending systems at Unisys, and I build AI products
+where the output has a boundary: a card payment that is allowed or reviewed,
+a fund fact that must cite one page, a catalogue answer that only uses
+retrieved products, and a voice note that is not sent until it is reviewed.
 """
         )
 
@@ -41,12 +39,8 @@ solutions through product thinking, experimentation, and user research.
         b1, b2 = st.columns(2)
 
         with b1:
-            st.link_button(
-                "View Case Studies",
-                "https://noirakhan.github.io/portfolio/",
-                
-                use_container_width=True,
-            )
+            if st.button("View products", use_container_width=True, type="primary"):
+                st.switch_page("pages/Products_Built.py")
 
         with b2:
             resume = Path("assets/resume/resume_noira_khan.pdf")

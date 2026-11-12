@@ -5,11 +5,14 @@ import streamlit as st
 class Layout:
 
     @staticmethod
-    def setup():
+    def setup(
+        page_title: str = "Noira Khan | AI Product Manager",
+        page_icon: str = "",
+    ):
 
         st.set_page_config(
-            page_title="Noira Khan | AI Product Manager",
-            page_icon="",
+            page_title=page_title,
+            page_icon=page_icon,
             layout="wide",
             initial_sidebar_state="collapsed",
         )
@@ -63,25 +66,3 @@ class Layout:
             """,
             unsafe_allow_html=True,
         )
-
-        st.markdown(
-"""
-<style>
-
-header{
-visibility:hidden;
-}
-
-footer{
-visibility:hidden;
-}
-
-#MainMenu{
-visibility:hidden;
-}
-
-</style>
-""",
-unsafe_allow_html=True
-)
-        

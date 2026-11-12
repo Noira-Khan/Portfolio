@@ -1,5 +1,6 @@
-from pathlib import Path
 import streamlit as st
+
+from data.projects import GITHUB, PROJECTS
 
 
 def about():
@@ -69,16 +70,10 @@ customer understanding, and product strategy.
 """
         )
 
-        st.subheader("Current Portfolio Projects")
+        st.subheader("Public projects")
 
-        st.markdown(
-            """
-- AI Fraud Detection
-- Multimodal Retail Assistant (RAG)
-- AI Interview Coach
-- AI Customer Support Agent
-"""
-        )
+        for project in PROJECTS:
+            st.markdown(f"- [{project['title']}]({project['repo']}) — {project['eyebrow']}")
 
         st.write(
             """
@@ -94,7 +89,7 @@ to build products that create meaningful impact.
         # BUTTONS
         # --------------------------
 
-        c1, c2, c3, c4 = st.columns(4)
+        c1, c2 = st.columns(2)
 
         with c1:
             st.link_button(
@@ -106,7 +101,7 @@ to build products that create meaningful impact.
         with c2:
             st.link_button(
                 "GitHub",
-                "https://github.com/Noira-K",
+                GITHUB,
                 use_container_width=True,
             )
 

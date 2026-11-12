@@ -1,99 +1,21 @@
 import streamlit as st
 
+from components.layout import Layout
 from components.navbar import navbar
 from components.project_card import project_card
+from data.projects import PROJECTS
 
-# --------------------------------------------------
-# Page Config
-# --------------------------------------------------
-
-st.set_page_config(
-    page_title="Products Built",
-    page_icon="🚀",
-    layout="wide",
-)
-
-# --------------------------------------------------
-# Hide Streamlit Sidebar
-# --------------------------------------------------
-
-st.markdown("""
-<style>
-
-/* Hide sidebar */
-[data-testid="stSidebar"]{
-    display:none;
-}
-
-/* Hide sidebar expand button */
-[data-testid="collapsedControl"]{
-    display:none;
-}
-
-/* Reduce top padding */
-.block-container{
-    padding-top:2rem;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# --------------------------------------------------
-# Navbar
-# --------------------------------------------------
-
+Layout.setup(page_title="Products")
 navbar()
 
-# --------------------------------------------------
-# Header
-# --------------------------------------------------
-
-st.title("Products Built")
-
-st.markdown(
-"""
-Explore a collection of AI products that I designed and developed, combining
-Artificial Intelligence, Machine Learning and Product Thinking to solve
-real-world business problems.
-"""
+st.title("Products")
+st.write(
+    "Shipped work from github.com/Noira-Khan. "
+    "Case studies on this site use the same list, so a new repository is added once."
 )
 
-st.markdown("---")
-
-# ==================================================
-# PROJECT 1
-# ==================================================
-
-left, center, right = st.columns([1, 3, 1])
-
-with center:
-    project_card(
-        title="🛍️ Multimodal Retail Assistant",
-        subtitle="""
-AI-powered fashion discovery platform using Computer Vision,
-Retrieval-Augmented Generation (RAG) and Large Language Models.
-""",
-        image_path="products/retail_assistant/rag_cover.jpg",
-        page_path="pages/overview_retail.py",
-        button_key="retail",
-    )
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# ==================================================
-# PROJECT 2
-# ==================================================
-
-left, center, right = st.columns([1, 3, 1])
-
-with center:
-    project_card(
-        title="Finance Shield AI",
-        subtitle="""
-AI-powered credit card fraud detection system using
-Machine Learning, FastAPI and Streamlit.
-""",
-        image_path="products/fraud_detection/fraud_cover.jpeg",
-        page_path="pages/overview_fraud.py",
-        button_key="fraud",
-    )
+left, right = st.columns(2, gap="large")
+columns = [left, right]
+for index, project in enumerate(PROJECTS):
+    with columns[index % 2]:
+        project_card(project, button_key=f"products-{project['slug']}")

@@ -48,8 +48,8 @@ def navbar():
 
     st.markdown('<div class="navbar-container">', unsafe_allow_html=True)
 
-    logo, home, projects, case, resume = st.columns(
-        [3.2, 1, 1.3, 1.5, 1]
+    logo, home, projects, case, github = st.columns(
+        [3.2, 1, 1.2, 1.4, 1.1]
     )
 
     with logo:
@@ -70,8 +70,11 @@ def navbar():
         if st.button("Case Studies", use_container_width=True):
             st.switch_page("pages/Case_Studies.py")
 
-    # with resume:
-    #     if st.button("Resume", use_container_width=True):
-    #         st.switch_page("pages/resume.py")
+    with github:
+        st.link_button(
+            "GitHub",
+            "https://github.com/Noira-Khan",
+            use_container_width=True,
+        )
 
     st.markdown("</div>", unsafe_allow_html=True)
