@@ -1,35 +1,45 @@
 import streamlit as st
 
 
-def project_card(
-    title: str,
-    subtitle: str,
-    image_path: str,
-    page_path: str,
-    button_key: str,
-):
-    """
-    Reusable Project Card
-    """
+def project_card(project: dict, *, button_key: str) -> None:
+    """One catalog card. Image is optional; every card links to the case page and the repo."""
 
-    with st.container():
+    with st.container(border=True):
+        image = project.get("image")
+        if image:
+            st.image(image, use_container_width=True)
+        else:
+            st.markdown(f"**{project['eyebrow']}**")
 
-        # Cover Image
-        st.image(image_path, use_container_width=True)
+        st.markdown(f"### {project['title']}")
+        st.caption(project["summary"])
 
-        # Title
-        st.markdown(f"## {title}")
+        st.write(" · ".join(project["stack"]))
 
-        # Description
-        st.caption(subtitle)
+        view, source = st.columns(2)
+        with view:
+            if st.button(
+                "Case study",
+                key=f"{button_key}-case",
+                use_container_width=True,
+                type="primary",
+            ):
+                st.switch_page(project["page"])
+        with source:
+            st.link_button(
+                "GitHub",
+                project["repo"],
+                use_container_width=True,
+            )
 
-        # View Project Button
-        if st.button(
-            "View Project →",
-            key=button_key,
-            use_container_width=True,
-            type="primary",
-        ):
-            st.switch_page(page_path)
 
-        st.markdown("---")
+def project_links(project: dict) -> None:
+    demo = project.get("demo")
+    if demo:
+        left, right = st.columns(2)
+        with left:
+            st.link_button("Open the app", demo, use_container_width=True)
+        with right:
+            st.link_button("GitHub", project["repo"], use_container_width=True)
+    else:
+        st.link_button("GitHub", project["repo"])

@@ -1,24 +1,27 @@
 import streamlit as st
 
+from components.layout import Layout
 from components.navbar import navbar
+from components.project_card import project_links
+from data.projects import by_slug
 
-st.set_page_config(
-    page_title="Multimodal Retail Assistant",
-    page_icon="🛍️",
-    layout="wide"
-)
+project = by_slug("retail")
 
+Layout.setup(page_title=project["title"], page_icon="🛍️")
 navbar()
 
 # -------------------------------------------------------
 # Hero
 # -------------------------------------------------------
 
-st.title("🛍️ Multimodal Retail Assistant")
+st.title(project["title"])
 
 st.markdown("""
-### AI-powered Fashion Discovery using Computer Vision, Retrieval-Augmented Generation (RAG), Vector Search and Large Language Models
+### Search 44,417 fashion products with words or a photo. Retrieval stays on the machine.
 """)
+
+st.write(project["summary"])
+project_links(project)
 
 st.image(
     "products/retail_assistant/rag_cover.jpg",
@@ -36,16 +39,16 @@ st.subheader("Project Highlights")
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
-    st.metric("Search", "Semantic + Visual")
+    st.metric("Catalogue", "44,417")
 
 with c2:
-    st.metric("Architecture", "RAG")
+    st.metric("Default search", "Lexical")
 
 with c3:
-    st.metric("AI Modules", "4")
+    st.metric("Semantic", "Optional")
 
 with c4:
-    st.metric("Status", "🟢 Live")
+    st.metric("API key", "Not required")
 
 st.divider()
 
@@ -107,13 +110,8 @@ st.divider()
 
 st.header("Project Overview")
 
-st.write("""
-The **Multimodal Retail Assistant** is an AI-powered fashion discovery platform that enables users to search for products using natural language and visual inputs instead of relying solely on keyword-based search.
-
-The application combines Computer Vision, FAISS Vector Search, Retrieval-Augmented Generation (RAG), and Large Language Models to deliver highly relevant, context-aware product recommendations.
-
-Designed with both technical implementation and product thinking in mind, the solution demonstrates how modern AI can improve product discovery, reduce search friction, and create a more engaging shopping experience.
-""")
+st.write(project["summary"])
+st.write(project["decision"])
 
 st.divider()
 
@@ -221,7 +219,7 @@ padding:6px 12px;
 border-radius:8px;
 margin:4px;
 display:inline-block;">
-🔍 FAISS
+🔍 TF–IDF
 </span>
 
 <span style="
@@ -231,7 +229,7 @@ padding:6px 12px;
 border-radius:8px;
 margin:4px;
 display:inline-block;">
-🖼 OpenCLIP
+FAISS MiniLM
 </span>
 
 <span style="
@@ -370,13 +368,15 @@ st.markdown("""
 The project was developed incrementally, with each phase introducing a new AI capability to enhance the shopping experience.
 """)
 
-st.success("✅ Phase 1 — Semantic Product Search")
-st.success("✅ Phase 2 — AI Shopping Assistant")
-st.success("✅ Phase 3 — Product Comparison")
-st.success("✅ Phase 4 — Analytics Dashboard")
-
-st.warning("🚧 Phase 5 — Voice Search")
-st.warning("🚧 Phase 6 — Recommendation Engine")
+st.markdown(
+    """
+- Lexical search, filters, comparison, recommendations, and catalogue answers run without an API key.
+- Semantic FAISS is a separate index build. It is not the default path.
+- Gemini is used for an uploaded-photo caption and for free-form styling notes.
+- Voice input is a separate prototype, [Quiet Push-to-Talk](https://github.com/Noira-Khan/voice-input-prototype), not a mode inside this app.
+- The dataset has no prices, so the UI does not filter by price.
+"""
+)
 
 st.divider()
 
@@ -384,58 +384,14 @@ st.divider()
 # Live Demo
 # -------------------------------------------------------
 
-st.header("Live Demo")
+st.header("Open the project")
 
-st.markdown(
-    """
-<div style="
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:15px;
-">
-
-<span style="
-height:14px;
-width:14px;
-background-color:#22c55e;
-border-radius:50%;
-display:inline-block;
-"></span>
-
-<span style="
-font-size:20px;
-font-weight:600;
-">
-Live on Streamlit Cloud
-</span>
-
-</div>
-""",
-    unsafe_allow_html=True,
+st.write(
+    "The Streamlit app and the GitHub repository are separate from this portfolio. "
+    "Search, filters, comparison, and catalogue answers run without an API key."
 )
 
-st.write("""
-Experience the **Multimodal Retail Assistant** in action. Search products using
-natural language, upload fashion images for visual search, compare products,
-and explore AI-powered recommendations powered by Retrieval-Augmented Generation (RAG).
-""")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.link_button(
-        "Launch Live Demo",
-        "https://multimodal-rag-pro-search.streamlit.app/",
-        use_container_width=True,
-    )
-
-with col2:
-    st.link_button(
-        "GitHub Repository",
-        "https://github.com/Noira-Khan/multimodal-rag-product-search",
-        use_container_width=True,
-    )
+project_links(project)
 
 st.info(
     "💡 Try uploading a fashion image or searching for products using natural language to experience semantic search, AI-powered recommendations, product comparison, and analytics."

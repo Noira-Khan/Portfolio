@@ -1,28 +1,27 @@
 import streamlit as st
 
+from components.layout import Layout
 from components.navbar import navbar
+from components.project_card import project_links
+from data.projects import by_slug
 
-# -------------------------------------------------------
-# Page Configuration
-# -------------------------------------------------------
+project = by_slug("fraud")
 
-st.set_page_config(
-    page_title="Finance Shield AI",
-    page_icon="🛡️",
-    layout="wide"
-)
-
+Layout.setup(page_title=project["title"], page_icon="🛡️")
 navbar()
 
 # -------------------------------------------------------
 # Hero Section
 # -------------------------------------------------------
 
-st.title("🛡️ Finance Shield AI")
+st.title(project["title"])
 
 st.markdown("""
-### AI-powered Credit Card Fraud Detection using Machine Learning
+### A card payment is Allowed or sent to Review. Review does not decline the card.
 """)
+
+st.write(project["summary"])
+project_links(project)
 
 st.image(
     "products/fraud_detection/fraud_cover.jpeg",
@@ -38,15 +37,10 @@ st.divider()
 st.header("Project Overview")
 
 st.write("""
-Finance Shield AI is an end-to-end machine learning application built to detect
-potentially fraudulent credit card transactions in real time.
+Finance Shield scores one card payment, or a small file of payments, on this computer.
+The saved model is already in the repository. The original public dataset is not required to run the desk.
 
-The project combines data preprocessing, feature engineering, model training,
-and an interactive Streamlit interface into a complete fraud detection workflow.
-
-Rather than focusing only on model accuracy, the goal was to build a practical
-product that demonstrates how AI can support fraud analysts with faster,
-more informed decision-making through an intuitive user experience.
+The screen leads with precision, recall, and F1 at a 95% cutoff. Accuracy is shown as a number that stays high even when fraud is missed, so it is not the decision metric.
 """)
 
 st.divider()
@@ -76,16 +70,7 @@ st.divider()
 
 st.header("Solution")
 
-st.write("""
-Finance Shield AI uses a supervised machine learning model to evaluate
-transaction characteristics and estimate the likelihood of fraud.
-
-Users simply enter transaction details through the application interface and
-receive an instant prediction along with a clear risk assessment.
-
-The solution demonstrates how machine learning can support fraud analysts by
-providing faster, more consistent, and data-driven decisions.
-""")
+st.write(project["decision"])
 
 st.divider()
 
@@ -115,15 +100,15 @@ st.divider()
 st.header("How the System Works")
 
 st.markdown("""
-1. User enters transaction details.
+1. A single payment, or a row in a batch file, supplies `Time`, `V1`–`V28`, and `Amount`.
 
-2. Input data is preprocessed.
+2. The saved XGBoost model returns a score.
 
-3. Engineered features are generated.
+3. Under 95% the desk says Allow. At 95% or above it says Review and files the case on the local queue.
 
-4. The trained model predicts fraud probability.
+4. At Review, the phone alert and the email are a preview. Nothing is sent. `blocks_payment` stays false.
 
-5. Results are displayed with a business-friendly risk assessment.
+5. The model record page shows the holdout precision, recall, and F1. It does not lead with accuracy.
 """)
 
 st.divider()
@@ -267,19 +252,15 @@ st.divider()
 # Business Impact
 # -------------------------------------------------------
 
-st.header("Business Impact")
+st.header("What the holdout supports")
 
-st.success("Reduce fraud-related financial losses")
+for item in project["proof"]:
+    st.markdown(f"- {item}")
 
-st.success("Improve fraud investigation speed")
-
-st.success("Lower false-positive rates")
-
-st.success("Improve customer experience")
-
-st.success("Support data-driven business decisions")
-
-st.success("Increase operational efficiency")
+st.caption(
+    "These figures are the holdout notes in the Finance Shield README. "
+    "They are not a production loss estimate."
+)
 
 st.divider()
 
@@ -290,21 +271,9 @@ st.divider()
 st.header("Future Enhancements")
 
 st.markdown("""
-- Explainable AI using SHAP
+Already in the repository: the Streamlit desk, the FastAPI `POST /predict` endpoint, the saved model, and the operating-rules page.
 
-- REST API with FastAPI
-
-- Real-time fraud scoring
-
-- Human-in-the-loop review workflow
-
-- Continuous model retraining
-
-- Cloud deployment (AWS)
-
-- Model monitoring and drift detection
-
-- Fraud analytics dashboard
+Not in this build: SHAP explanations, a live card network, a message that is actually sent, or a claim about money saved.
 """)
 
 st.image(
@@ -319,19 +288,4 @@ st.divider()
 # -------------------------------------------------------
 
 st.header("Explore the Project")
-
-col1, col2 = st.columns(2)
-
-with col1:
-
-    st.link_button(
-        "Launch Streamlit Demo",
-        "https://financeshieldai.streamlit.app/"
-    )
-
-with col2:
-
-    st.link_button(
-        "GitHub Repository",
-        "https://github.com/Noira-Khan/ML-Fraud-Detection-Project"
-    )
+project_links(project)
